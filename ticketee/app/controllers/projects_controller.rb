@@ -57,6 +57,7 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+
   def project_params
     params.require(:project).permit(:name, :description)
   end
