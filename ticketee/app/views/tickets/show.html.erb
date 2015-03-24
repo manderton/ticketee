@@ -5,7 +5,9 @@
   </div>
 
   <div class="page-header">
+    <%= link_to "Edit Ticket", [:edit, @project, @ticket], class: "edit pull-right" %>
     <h3><%= @ticket.title %></h3>
+
   </div>
 
     <%= simple_format(@ticket.description) %>
