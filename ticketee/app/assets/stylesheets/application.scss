@@ -57,3 +57,7 @@ a.delete {
 .alert-alert {
   @extend .alert-danger
 }
+
+p#author {
+  font-style: italic;
+}

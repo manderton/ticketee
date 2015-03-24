@@ -1,8 +1,11 @@
 require "rails_helper"
 
 RSpec.feature "Creating Tickets" do
+  let(:user) { FactoryGirl.create(:user) }
 
   before do
+    login_as(user)
+
     FactoryGirl.create(:project, name: "Internet Explorer")
 
     visit "/"
@@ -33,5 +36,16 @@ RSpec.feature "Creating Tickets" do
     expect(page).to have_content("Ticket has not been created.")
     expect(page).to have_content("Title can't be blank")
     expect(page).to have_content("Description can't be blank")
+  end
+
+  scenario "Creating a ticket" do
+    fill_in "Title", with: "non-standards compliance"
+    fill_in "Description", with: "My pages are ugly!"
+    click_button "Create Ticket"
+
+    expect(page).to have_content("Ticket has been created.")
+    within("#ticket #author") do
+      expect(page).to have_content("Created by #{user.email}")
+    end
   end
 end
