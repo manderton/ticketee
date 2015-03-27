@@ -1,6 +1,8 @@
 
 <div class="page-header">
-  <%= link_to "New Project", new_admin_project_path, class: "new pull-right" %>
+  <% admins_only do %>
+      <%= link_to "New Project", new_admin_project_path, class: "new pull-right" %>
+  <% end %>
 
   <h2>Projects</h2>
 
